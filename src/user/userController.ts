@@ -12,7 +12,7 @@ export function userSignin(req, res) {
         else if (user != null) {
             if (req.body.password === user.password) {
                 console.log(user)
-                res.send("User Signin Successfully")
+                res.send(user)
             } else {
                 res.send("No User Found!");
             }
@@ -32,8 +32,9 @@ export function userSignup(req, res) {
         if (err) {
             res.send("Error to save user: " + err)
         } else {
+             req.body.firebaseToken = userData.uid;
             let user = new saleman2Model(req.body);
-                user.firebaseToken = userData.uid;
+               
             
             user.save(function(err, success) {
             
@@ -41,7 +42,7 @@ export function userSignup(req, res) {
                      res.send(err);
                 } else {
                     
-                    res.send({ message: "Inserted Successfully", data: success });
+                    res.send({ message: "Inserted Successfully", token : req.body.firebaseToken });
                 }
 
             })

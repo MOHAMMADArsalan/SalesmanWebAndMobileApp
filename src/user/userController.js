@@ -9,7 +9,7 @@ function userSignin(req, res) {
         else if (user != null) {
             if (req.body.password === user.password) {
                 console.log(user);
-                res.send("User Signin Successfully");
+                res.send(user);
             }
             else {
                 res.send("No User Found!");
@@ -31,14 +31,14 @@ function userSignup(req, res) {
             res.send("Error to save user: " + err);
         }
         else {
+            req.body.firebaseToken = userData.uid;
             var user = new usermodel_1.saleman2Model(req.body);
-            user.firebaseToken = userData.uid;
             user.save(function (err, success) {
                 if (err) {
                     res.send(err);
                 }
                 else {
-                    res.send({ message: "Inserted Successfully", data: success });
+                    res.send({ message: "Inserted Successfully", token: req.body.firebaseToken });
                 }
             });
         }
