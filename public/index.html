@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="vendors/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendors/angular-material/angular-material.css">
+     <script src="vendors/angular/angular.min.js"></script>
+     <script src="vendors/angular-animate/angular-animate.min.js"></script>
+     <script src="vendors/angular-aria/angular-aria.min.js"></script>
+     <script src="vendors/angular-material/angular-material.min.js"></script>
+     <script src="vendors/angular-ui-router/release/angular-ui-router.js"></script>
+     <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+    <script src="config/config.js"></script>
+    <script src="components/signin/signin.js"></script>
+    <script src="components/signup/signup.js"></script>
+    <script src="components/home/home.js"></script>
+</head>
+<body ng-controller="myCtrl as app">
+    <div ui-view="nav"></div>
+    <div ui-view="main"></div>
+</body>
+</html>

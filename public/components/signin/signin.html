@@ -1,0 +1,66 @@
+<!--<div layout="row" layout-align="center center" layout-padding>
+    <form flex="30" flex-gt-sm class="md-whiteframe-9dp" layout="column" layout-align="start center" style="background-color:black; opacity:0.7;">
+        <h3 class="LightGreenColor">Please Login</h3>
+        <md-input-container>
+            <label></label>
+            <input type="text" placeholder="Username" ng-model="user.username">
+        </md-input-container>
+        <md-input-container class="LightGreenColor">
+            <label></label>
+            <input type="password" placeholder="Password" ng-model="user.password">
+        </md-input-container>
+        <md-button class="LightGreenColor">Forgot password?</md-button>
+        <md-button class="LightGreenColor" ng-click="signin()">Login</md-button>
+    </form>
+</div>
+
+-->
+  <md-content class="md-padding " layout="row" layout-wrap layout-align="center center" layout-xs="column" >
+      <md-card flex-gt-sm="50" flex-sm="60" layout="column" class="md-whiteframe-18dp">
+     <md-card-content layout="column">
+    <h3 class="LightGreenColor" layout="row" layout-align="center center">Sign in</h3>
+        <md-input-container>
+            <label>User name</label>
+            <input type="text" ng-model="user.username">
+        </md-input-container>
+        <md-input-container>
+            <label>Password</label>
+            <input type="password" ng-model="user.password">
+        </md-input-container>
+        <md-button class="md-raised md-primary">Forgot password?</md-button>
+        <md-button class="md-raised md-primary" ng-click="signin()">Login</md-button>
+        
+     </md-card-content>
+      </md-card>
+  </md-content>
+<!--
+<div>
+    <header>
+        <h1>Saleman App</h1>
+        <p>saleman's app give u more to manage you Salemen!!</p>
+    </header>
+    <div class="col-md-6 col-md-offset-3">
+    <form id="register">
+        <div class="form-group centered">
+            <label>
+                Username :
+                <i>
+                <input type="text" placeholder="Enter Username" ng-model="user.username" class="form-control" name="username" required>
+    
+                </i>
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                Password :
+                <i>
+                <input type="password" placeholder="Enter Password" class="form-control" ng-model="user.password" name="password" required>
+    
+                </i>
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary" ng-click="signin()">Sign in</button>
+        <button ui-sref="signup">Sign up </button>
+    </form>
+    </div>
+</div>-->

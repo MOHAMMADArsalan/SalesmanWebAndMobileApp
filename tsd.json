@@ -1,0 +1,39 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "express/express.d.ts": {
+      "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
+    },
+    "node/node.d.ts": {
+      "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
+    },
+    "serve-static/serve-static.d.ts": {
+      "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
+    },
+    "body-parser/body-parser.d.ts": {
+      "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
+    },
+    "mime/mime.d.ts": {
+      "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
+    },
+    "mongoose/mongoose.d.ts": {
+      "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
+    },
+    "morgan/morgan.d.ts": {
+      "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
+    },
+    "angularjs/angular.d.ts": {
+      "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
+    },
+    "firebase/firebase.d.ts": {
+      "commit": "81b951f1ac437d1eb5ff5171a0bfa6c467634b13"
+    }
+  }
+}

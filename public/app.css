@@ -1,0 +1,19 @@
+.LightGreenColor{
+    color:#18AA8D ! important;
+}
+.color {
+    background: black;
+}
+md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+    border-color: #18AA8D;
+}
+.vscroll {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.formBorderLigthGreen{
+    border: 5px solid #18AA8D;
+}
+body {
+    overflow: hidden;
+}
