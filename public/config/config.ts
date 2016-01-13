@@ -40,12 +40,12 @@ angular.module("myApp")
 
         })
           
-        $urlRouterProvider.otherwise("/home");
+        $urlRouterProvider.otherwise("/signin");
     })
          .run(function($rootScope ,$state){
-             $rootScope.$on("$stateChangeStart" ,function(event ,toState){
-             var FirebaseToken = lo
-                 if(toState.notLoggedIn) {
+             $rootScope.$on("$stateChangeStart" ,function(event ,$state,toState){
+             var FirebaseToken = localStorage.getItem("token")
+                 if(toState.notLoggedIn && !FirebaseToken.token) {
                      event.preventDefault();
                      $state.go("signin")
                  }

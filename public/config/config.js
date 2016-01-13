@@ -34,12 +34,12 @@ angular.module("myApp")
             }
         }
     });
-    $urlRouterProvider.otherwise("/home");
+    $urlRouterProvider.otherwise("/signin");
 })
     .run(function ($rootScope, $state) {
-    var FirebaseToken = localStorage.getItem("token");
-    $rootScope.$on("$stateChangeStart", function (event, toState) {
-        if (toState.notLoggedIn) {
+    $rootScope.$on("$stateChangeStart", function (event, $state, toState) {
+        var FirebaseToken = localStorage.getItem("token");
+        if (toState.notLoggedIn && !FirebaseToken.token) {
             event.preventDefault();
             $state.go("signin");
         }
