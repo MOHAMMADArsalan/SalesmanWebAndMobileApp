@@ -6,31 +6,31 @@
           <h3 layout="row" class="LightGreenColor" layout-align="center center">Sign up</h3>
         <md-input-container>
             <label>User Name</label>
-             <input type="text"ng-model="user.username" name="username" >
+             <input type="text"ng-model="signup.user.username" name="username" >
         </md-input-container>
         <md-input-container >
             <label>First Name</label>
-            <input type="text" ng-model="user.firstname">
+            <input type="text" ng-model="signup.user.firstname">
         </md-input-container>
         <md-input-container>
             <label>Last Name</label>
-               <input type="text"  ng-model="user.lastname"  >
+               <input type="text"  ng-model="signup.user.lastname"  >
         </md-input-container>
         <md-input-container>
             <label>Email</label>
-                  <input type="email" ng-model="user.email">
+                  <input type="email" ng-model="signup.user.email">
         </md-input-container>
         <md-input-container>
             <label>Password</label>
-                   <input type="password"  ng-model="user.password" >
+                   <input type="password"  ng-model="signup.user.password" >
 
         </md-input-container>
               <md-input-container>
             <label>Confirm Password</label>
-                      <input type="password" ng-model="user.confirmpass">
+                      <input type="password" ng-model="signup.user.confirmpass">
 
         </md-input-container>
-        <md-button class="md-raised md-primary" ng-click="signup()">Sign up</md-button>
+        <md-button class="md-raised md-primary" ng-click="signup.signup()">Sign up</md-button>
         
         </md-card-content>
 

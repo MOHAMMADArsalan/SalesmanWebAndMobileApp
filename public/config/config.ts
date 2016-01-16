@@ -22,7 +22,8 @@ angular.module("myApp")
                 'nav': navtoolbar,
                 'main': {
                     templateUrl: "../components/signup/signup.html",
-                    controller: "SignupController"
+                    controller: "SignupController",
+                    controllerAs : "signup"
                 }
             }
 
@@ -33,7 +34,7 @@ angular.module("myApp")
                 'nav': navtoolbar,
                 'main': {
                     templateUrl: "../components/home/home.html",
-                    controller: "SignupController",
+                    controller: "HomeController",
                     notLoggedIn : true
                 }
             }
