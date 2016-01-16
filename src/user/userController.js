@@ -9,7 +9,7 @@ function userSignin(req, res) {
         else if (user != null) {
             if (req.body.password === user.password) {
                 console.log(user);
-                res.send(user);
+                res.send({ user: "User Signin Successfully", data: user });
             }
             else {
                 res.send("No User Found!");
