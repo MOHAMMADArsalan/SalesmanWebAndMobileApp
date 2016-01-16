@@ -2,16 +2,16 @@
 angular.module("app.signin", [])
     .controller("SigninController", function ($scope, $http, $state) {
     $scope.user = { username: '', password: '' };
-    $scope.error = '';
+    $scope.error = 'Error';
     $scope.signin = function () {
         if ($scope.user.username != '' && $scope.user.password != '') {
             $http.post('/api/signin', $scope.user).then(function (response) {
-                console.log(response);
-                if (response.data == "User Signin Successfully") {
+                console.log(response.data.user);
+                if (response.data.user == "User Signin Successfully") {
                     $state.go("home");
+                    localStorage.setItem("token", response.data.data.firebaseToken);
                 }
                 else {
-                    $scope.error = response.data;
                     console.log($scope.error);
                 }
             }, function (err) {
