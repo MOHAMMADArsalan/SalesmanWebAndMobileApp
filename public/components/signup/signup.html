@@ -1,7 +1,7 @@
 
   <md-content class="md-padding " layout="row" layout-wrap layout-align="center center" layout-xs="column" >
-      <md-card flex-gt-sm="50" flex-sm="60" layout="column" class="md-whiteframe-18dp">
-        <md-card-content layout="column">
+      <md-card flex-gt-sm="50" flex-sm="60" layout="column" class="md-whiteframe-18dp  ">
+        <md-card-content layout="column" class="formLenght">
         
           <h3 layout="row" class="LightGreenColor" layout-align="center center">Sign up</h3>
         <md-input-container>
@@ -30,7 +30,7 @@
                       <input type="password" ng-model="signup.user.confirmpass">
 
         </md-input-container>
-        <md-button class="md-raised md-primary" ng-click="signup.signup()">Sign up</md-button>
+        <md-button class="md-raised md-primary" ng-click="signup.signup(signup.user)">Sign up</md-button>
         
         </md-card-content>
 

@@ -1,24 +1,41 @@
 /// <reference path="../../typings/tsd.d.ts" />
 var usermodel_1 = require("./usermodel");
 var Firebase = require("firebase");
+var bcrypt = require("bcrypt-nodejs");
 function userSignin(req, res) {
-    usermodel_1.saleman2Model.findOne({ username: req.body.username }, function (err, user) {
-        if (err) {
-            res.send(err);
-        }
-        else if (user != null) {
-            if (req.body.password === user.password) {
-                console.log(user);
-                res.send({ user: "User Signin Successfully", data: user });
-            }
-            else {
-                res.send("No User Found!");
+    //  console.log(req.body)
+    usermodel_1.saleman2Model.findOne({ $or: [{ username: req.body.username }, { email: req.body.username }] }, function (err, success) {
+        if (success) {
+            console.log(success);
+            bcrypt.compare(req.body.password, success.password, function (err, isMatch) {
+                done(err, isMatch);
+            });
+            function done(err2, isMatch) {
+                isMatch ? res.send(success) : res.send(err);
             }
         }
         else {
-            res.send("User does not exist");
+            res.send(success);
         }
     });
+    //         if (err) {
+    //             res.send(err);
+    //         }
+    //         else if (user != null) {
+    //             console.log(user)
+    //             bcrypt.compare(req.body.password, user.password, function(err, isMatch) {
+    //                 done(err, isMatch);
+    //                 // console.log(user)
+    //             });
+    //             function done(err2, isMatch) {
+    //                 isMatch ? res.send(user) : res.send(err);
+    //             }
+    //         }
+    //         else {
+    //             console.log("alkjakla")
+    //             res.send("User does not exist")
+    //         }
+    //     });
 }
 exports.userSignin = userSignin;
 function userSignup(req, res) {

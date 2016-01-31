@@ -1,0 +1,25 @@
+
+  <md-content class="md-padding " layout="row" layout-wrap layout-align="center center" layout-xs="column" >
+      <md-card flex-gt-sm="50" flex-sm="60" layout="column" class="md-whiteframe-18dp  ">
+        <md-card-content layout="column" class="formLenght">
+        
+          <h3 layout="row" class="LightGreenColor" layout-align="center center">Add Company</h3>
+        <md-input-container>
+            <label>CompanyName</label>
+             <input type="text"ng-model="user.username">
+        </md-input-container>
+        <md-input-container>
+            <label>Address</label>
+                  <input type="text" ng-model="user.address">
+        </md-input-container>
+        <md-input-container>
+            <label>Nearby</label>
+                   <input type="text"  ng-model="user.nearby">
+
+        </md-input-container>
+           
+        <md-button class="md-raised md-primary" ui-sref="dashboard">Save</md-button>
+        
+        </md-card-content>
+
+      </md-card>

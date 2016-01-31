@@ -4,8 +4,9 @@ angular.module("app.signup",[])
     var _self = this;
    this.signup = function(){
         $http.post("/api/signup",this.user).then(function(response){
+            console.log(response.data.token);
             localStorage.setItem("token",response.data.token);
-            $state.go("signin");
+           $state.go("signin");
         },function(err){
             this.error = err;
         })
