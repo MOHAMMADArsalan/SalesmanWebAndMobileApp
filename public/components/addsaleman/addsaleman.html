@@ -1,36 +1,36 @@
 <md-content class="md-padding scrollbar container" layout="row" layout-wrap layout-align="center center" layout-xs="column">
     <md-card flex-gt-sm="50" flex-sm="60" layout="column" class="md-whiteframe-18dp  ">
         <md-card-content layout="column" class="formLenght">
-            <h2 layout="row" class="LightGreenColor" layout-align="center center">Please Signup to join us</h2>
+            <h2 layout="row" class="LightGreenColor" layout-align="center center">Add salesman</h2>
             <md-input-container>
                 <label>User Name</label>
-                <input type="text" ng-model="signup.user.username">
+                <input type="text" ng-model="saleman.user.username">
             </md-input-container>
             <md-input-container>
                 <label>First Name</label>
-                <input type="text" ng-model="signup.user.firstname">
+                <input type="text" ng-model="saleman.user.firstname">
             </md-input-container>
             <md-input-container>
                 <label>Last Name</label>
-                <input type="text" ng-model="signup.user.lastname">
+                <input type="text" ng-model="saleman.user.lastname">
             </md-input-container>
             <md-input-container>
                 <label>Email</label>
-                <input type="email" ng-model="signup.user.email">
+                <input type="email" ng-model="saleman.user.email">
             </md-input-container>
             <md-input-container>
                 <label>Password</label>
-                <input type="password" ng-model="signup.user.password">
+                <input type="password" ng-model="saleman.user.password">
 
             </md-input-container>
             <md-input-container>
                 <label>Confirm Password</label>
-                <input type="password" ng-model="signup.user.confirmpass">
+                <input type="password" ng-model="saleman.user.confirmpass">
 
             </md-input-container>
             <div layout="column" layout-align="center center">
-                <md-button class="md-raised md-primary" ng-click="signup.signup()">Sign up</md-button>
-                <md-progress-circular md-mode="indeterminate" ng-show="signup.loader"></md-progress-circular>
+                <md-button class="md-raised md-primary" ng-click="saleman.addsalesman()">Sign up</md-button>
+                <md-progress-circular md-mode="indeterminate" ng-show="saleman.loader"></md-progress-circular>
             </div>
 
         </md-card-content>

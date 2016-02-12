@@ -1,12 +1,12 @@
-/// <reference path="../../typings/tsd.d.ts" />
 
 import express = require("express");
-import {saleman2Model}  from "./usermodel";
-var Firebase = require("firebase");
+import {AdminModel, companyModel}  from "./usermodel";
+let Firebase = require("firebase");
 import bcrypt = require("bcrypt-nodejs");
+
 export function userSignin(req, res) {
     //  console.log(req.body)
-    saleman2Model.findOne({ $or: [{ username: req.body.username }, { email: req.body.username }] }, function(err, success) {
+    AdminModel.findOne({ email: req.body.username }, function(err, success) {
         if (success) {
             console.log(success);
             bcrypt.compare(req.body.password, success.password, function(err, isMatch) {
@@ -17,40 +17,21 @@ export function userSignin(req, res) {
             }
         }
         else {
-            res.send(success)
+            res.send(success);
         }
     });
-    //         if (err) {
-    //             res.send(err);
-    //         }
-    //         else if (user != null) {
-    //             console.log(user)
-    //             bcrypt.compare(req.body.password, user.password, function(err, isMatch) {
-    //                 done(err, isMatch);
-    //                 // console.log(user)
-    //             });
-    //             function done(err2, isMatch) {
-    //                 isMatch ? res.send(user) : res.send(err);
-    //             }
-    //         }
-    //         else {
-    //             console.log("alkjakla")
-    //             res.send("User does not exist")
-    //         }
-
-    //     });
 }
 export function userSignup(req, res) {
-    var ref = new Firebase("https://salesmanhybirdapp.firebaseio.com/user")
+    let ref = new Firebase("https://salesmanhybirdapp.firebaseio.com/user");
     ref.createUser({
         email: req.body.email,
         password: req.body.password
     }, function(err, userData) {
         if (err) {
-            res.send("Error to save user: " + err)
+            res.send("Error to save user: " + err);
         } else {
             req.body.firebaseToken = userData.uid;
-            let user = new saleman2Model(req.body);
+            let user = new AdminModel(req.body);
             user.save(function(err, success) {
                 if (err) {
                     res.send(err);
@@ -58,9 +39,107 @@ export function userSignup(req, res) {
                     res.send({ message: "Inserted Successfully", token: req.body.firebaseToken });
                 }
 
-            })
+            });
+        }
+    });
+}
+export function getUser(req, res) { }
+
+// export function addCompany(req,res) {
+//     let company = new companyModel(req.body);
+//     company.save(function(err ,success){
+//         if(err){
+//             res.send({message : false , Error : err});
+//         }else{
+//             res.send({message : true , data : success});
+//         }
+//     })
+// }
+
+export function addCompany(req, res) {
+    console.log(req.query.token);
+    console.log(req.body)
+    let company = new companyModel(req.body);
+    company.adminId = req.query.token;
+    company.save(function(err, success) {
+        if (err) {
+            res.send({ message: false, Error: "Error to create company" });
+            return;
+        };
+        AdminModel.update({ firebaseToken: req.query.token }, { $set: { companyId: req.query.token } }, function(error, data) {
+            if (err) {
+                res.send({ message: false, Error: "Error to create company" });
+            } else {
+                res.send({ message: true, data: "Company created Successfully" });
+            }
+        });
+    });
+}
+
+export function addSalesman(req, res) {
+    let ref = new Firebase("https://salesmanhybirdapp.firebaseio.com/user");
+    //User create on firebase
+    ref.createUser({
+        email: req.body.email,
+        password: req.body.password
+        
+    }, function(err, userData) {
+        if (err) {
+            //Error if donot save
+            res.send("Error to save user: " + err);
+            
+        } else {
+            //user save
+            req.body.firebaseToken = userData.uid;
+            req.body.companyId = req.query.token;
+            let user = new AdminModel(req.body);
+            user.save(function(err, success) {
+                if (err) {
+                    res.send(err);
+                    return;
+                } else {
+                    //Update admin data
+           AdminModel.update({ firebaseToken: req.query.token }, { $push: { usersIds:  userData.uid } }, function(error, data) {
+            if (err) {
+                res.send({ message: false, Error: "Error to add saleman" });
+                return;
+            } else {
+                companyModel.update({ adminId: req.query.token } , { $push: { usersIds:  userData.uid }} ,function(error ,data){
+                    if (err) {
+                        res.send({ message: false, Error: "Error to create company" });
+                    } else {
+                      res.send({ message: true, data: "Saleman add Successfully" });
+            }
+                  
+                }
+              
+
+          }
+       });
+     }
+   });
+}
+// export function getAdmin(req, res) {
+//     AdminModel.find({ firebaseToken: req.query.token }, function(err, data) {
+//         if (err) {
+//             console.log("Error", err);
+//             res.send({ message: false, Error: err });
+//             return;
+//         }
+//         res.send({ message: true, data: data });
+//     });
+// }
+
+/*
+export function getCompany(req,res) {
+    companyModel.find({ firebaseToken: req.query.token } ,function(err ,data){
+        if(err){
+            res.send("Error to load Company")
+        } else if(!data){ 
+            res.send("Company not found")
+        }else{
+            res.send(data);
         }
     })
-
-
 }
+*/

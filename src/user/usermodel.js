@@ -2,19 +2,29 @@
 var bcrypt = require("bcrypt-nodejs");
 var mongoose = require("mongoose");
 var SALT_FACTOR = 10;
-var saleman2Schema = new mongoose.Schema({
-    username: { type: String, required: true, unique: true },
+//Admin Schema
+var AdminSchema = new mongoose.Schema({
+    username: { type: String, required: true },
     firstname: { type: String, required: true },
     lastname: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     firebaseToken: String,
-    company_id: String,
-    admin_id: String,
-    role_admin: { type: Boolean, default: true }
+    usersIds: { type: [] },
+    companyId: String,
+    adminId: String,
+    role_admin: { type: Boolean, default: true },
+    createdOn: { type: Date, default: Date.now() }
+});
+var companySchema = new mongoose.Schema({
+    companyName: { type: String, unique: true, required: true },
+    address: { type: String, unique: true, required: true },
+    usersIds: { type: [] },
+    adminId: String,
+    createdOn: { type: Date, default: Date.now() }
 });
 var noop = function () { };
-saleman2Schema.pre("save", function (done) {
+AdminSchema.pre("save", function (done) {
     var user = this;
     if (!user.isModified("password")) {
         return done();
@@ -32,5 +42,7 @@ saleman2Schema.pre("save", function (done) {
         });
     });
 });
-var saleman2Model = mongoose.model("saleman2", saleman2Schema);
-exports.saleman2Model = saleman2Model;
+var AdminModel = mongoose.model("saleman2", AdminSchema);
+exports.AdminModel = AdminModel;
+var companyModel = mongoose.model("companyData", companySchema);
+exports.companyModel = companyModel;

@@ -15,24 +15,27 @@
 </div>
 
 -->
-  <md-content class="md-padding " layout="row" layout-wrap layout-align="center center" layout-xs="column" >
-      <md-card flex-gt-sm="50" flex-sm="60" layout="column" class="md-whiteframe-18dp">
-     <md-card-content layout="column">
-    <h3 class="LightGreenColor" layout="row" layout-align="center center">Sign in</h3>
-        <md-input-container>
-            <label>UserName or Email</label>
-            <input type="text" ng-model="user.username">
-        </md-input-container>
-        <md-input-container>
-            <label>Password</label>
-            <input type="password" ng-model="user.password">
-        </md-input-container>
-        <md-button class="md-raised md-primary">Forgot password?</md-button>
-        <md-button class="md-raised md-primary" ng-click="signin()">Login</md-button>
-        
-     </md-card-content>
-      </md-card>
-  </md-content>
+<md-content class="md-padding scrollbar container" layout="row" layout-wrap layout-align="center center" layout-xs="column">
+    <md-card flex-gt-sm="50" flex-sm="60" layout="column" class="md-whiteframe-18dp">
+        <md-card-content layout="column">
+            <h3 class="LightGreenColor" layout="row" layout-align="center center">Please Sign in First to Continue</h3>
+            <md-input-container>
+                <label>UserName or Email</label>
+                <input type="text" ng-model="signin.user.username">
+            </md-input-container>
+            <md-input-container>
+                <label>Password</label>
+                <input type="password" ng-model="signin.user.password">
+            </md-input-container>
+
+            <div layout="column" layout-align="center center">
+                <md-button class="md-raised md-primary">Forgot password?</md-button>
+                <md-button class="md-raised md-primary" ng-click="signin.signin()">Login</md-button>
+                <md-progress-circular md-mode="indeterminate" ng-show="signin.loader"></md-progress-circular>
+            </div>
+        </md-card-content>
+    </md-card>
+</md-content>
 <!--
 <div>
     <header>

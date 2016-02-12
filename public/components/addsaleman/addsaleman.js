@@ -1,15 +1,18 @@
 /// <reference path="../../../typings/tsd.d.ts" />
-angular.module("app.signup", [])
-    .controller("SignupController", function ($http, $state) {
+angular
+    .module("app.addsaleman", [])
+    .controller("SalemanController", function ($http, $state) {
     var _self = this;
     _self.loader = false;
-    this.signup = function () {
+    _self.user = {};
+    this.addsalesman = function () {
+        _self.user.role_admin = false;
         if (this.user.password == this.user.confirmpass) {
             _self.loader = true;
-            $http.post("/api/signup", this.user).then(function (response) {
-                localStorage.setItem("token", response.data.token);
+            $http.post("/api/addSalesman", this.user).then(function (response) {
+                // localStorage.setItem("token", response.data.token);
                 _self.loader = false;
-                $state.go("signin");
+                $state.go("dashboard");
             }, function (err) {
                 this.error = err;
                 _self.loader = false;
@@ -17,6 +20,7 @@ angular.module("app.signup", [])
         }
         else {
             _self.missMatchPass = "password don't match";
+            _self.loader = false;
         }
     };
 });
