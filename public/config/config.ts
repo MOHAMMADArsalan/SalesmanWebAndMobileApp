@@ -44,6 +44,7 @@ angular.module("myApp")
                 "main": {
                     templateUrl : "../components/home/home.html",
                     controller  : "HomeController",
+                    controllerAs : "home"
                     
                 }
             }
@@ -75,6 +76,19 @@ angular.module("myApp")
             }
 
         })
+         .state("product", {
+            url: "/addproduct",
+           loginCompulsory : true,
+            views: {
+                "nav": navtoolbar,
+                "main": {
+                    templateUrl : "../components/product/product.html",
+                    controller  : "ProductController",
+                    controllerAs: "product"
+                }
+            }
+
+        })
         .state("addsaleman", {
             url: "/addsaleman",
            loginCompulsory : true,
@@ -88,6 +102,7 @@ angular.module("myApp")
             }
 
         });
+        
         $urlRouterProvider.otherwise("/");
         $httpProvider.interceptors.push("httpInterceptor");
     })
@@ -117,6 +132,7 @@ angular.module("myApp")
                 let firebaseToken = localStorage.getItem("token");
                 if (firebaseToken) {
                     config.url = config.url + "?token=" + firebaseToken;
+                    console.log(config.url);
                 }
                 return config;
             }

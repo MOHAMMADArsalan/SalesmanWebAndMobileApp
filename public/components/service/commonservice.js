@@ -1,8 +1,12 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 angular
     .module("myApp")
-    .service("commonService", function ($http, $q, $mdToast) {
+    .service("commonService", function ($http, $firebaseArray, $q, $mdToast) {
     var _self = this;
+    _self.Order = function (ref) {
+        _self.OrderArray = $firebaseArray(ref);
+        return _self.OrderArray;
+    };
     _self.getAdmin = function () {
         var deferred = $q.defer();
         $http.get("/router/token").then(function (response) {
@@ -21,9 +25,27 @@ angular
         };
         return deffered.promise;
     };
+    _self.getproduct = function () {
+        var deffered = $q.defer();
+        $http.get("/router/getproduct").then(function (response) {
+            deffered.resolve(response);
+        }), function (err) {
+            deffered.reject(err);
+        };
+        return deffered.promise;
+    };
     _self.getCompany = function () {
         var deffered = $q.defer();
         $http.get("/router/getcompany").then(function (response) {
+            deffered.resolve(response);
+        }), function (err) {
+            deffered.reject(err);
+        };
+        return deffered.promise;
+    };
+    _self.getOrder = function () {
+        var deffered = $q.defer();
+        $http.get("/router/getorder").then(function (response) {
             deffered.resolve(response);
         }), function (err) {
             deffered.reject(err);

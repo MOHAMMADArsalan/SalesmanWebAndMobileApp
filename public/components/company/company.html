@@ -12,10 +12,10 @@
             <label>Address</label>
                   <input type="text" ng-model="company.user.address">
         </md-input-container>
-
-        <md-button class="md-raised md-primary" ng-click="company.addCompany()" >Save</md-button>
-
-        </md-card-content>
+     <div layout="column" layout-align="center center">
+        <md-button class="md-raised md-primary" ng-click="company.addCompany()">Save</md-button>
          <md-progress-circular ng-show="company.lodder" md-mode="indeterminate"></md-progress-circular>
+     </div>
+        </md-card-content>
       </md-card>
 </md-content>

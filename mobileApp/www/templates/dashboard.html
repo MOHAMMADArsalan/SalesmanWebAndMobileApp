@@ -1,0 +1,18 @@
+<ion-view view-title="Dashboard">
+   <ion-content style="center; background-size: cover;" class="padding margin">
+    
+ <div class="list half padding" ng-repeat="product in product">
+            <div ui-sref="app.order" class="card card-gallery item item-text-wrap">
+                <div class="ink dark-bg">
+                    <h2>{{product.name}}</h2>
+                    <img class="full-image" src="img/product.jpg">
+                </div>
+                <div class="item tabs tabs-secondary tabs-icon-left">
+                    <a class="tab-item stable-bg assertive">
+                      Rs: {{product.price}} <i class="icon ion-pricetag"></i>
+                        
+                    </a>   
+                </div>
+            </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,25 @@
+<md-content class="md-padding scrollbar container" layout="row" layout-wrap layout-align="center center" layout-xs="column">
+    <md-card flex-gt-sm="50" flex-sm="60" layout="column" class="md-whiteframe-18dp  ">
+        <md-card-content layout="column" class="formLenght">
+            <h2 layout="row" class="LightGreenColor" layout-align="center center">Product</h2>
+            <md-input-container>
+                <label>product Name</label>
+                <input type="text" ng-model="product.product.name">
+            </md-input-container>
+            <md-input-container>
+                <label>price</label>
+                <input type="number" ng-model="product.product.price">
+            </md-input-container>
+            <md-input-container>
+                <label>Type</label>
+                <input type="text" ng-model="product.product.type">
+            </md-input-container>
+           
+            <div layout="column" layout-align="center center">
+                <md-button class="md-raised md-primary" ng-click="product.addproduct()">Add product</md-button>
+                <md-progress-circular md-mode="indeterminate" ng-show="product.loader"></md-progress-circular>
+            </div>
+
+        </md-card-content>
+
+    </md-card>

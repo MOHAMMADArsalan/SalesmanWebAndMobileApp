@@ -1,0 +1,15 @@
+{
+  "name": "sample",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.0.0-rc.2",
+    "ionic-material": "0.4.2",
+    "ion-md-input": "1.0.4"
+  },
+  "resolutions": {
+    "ionic": "~0.9.27"
+  },
+  "dependencies": {
+    "ngCordova": "~0.1.24-alpha"
+  }
+}

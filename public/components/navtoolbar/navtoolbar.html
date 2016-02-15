@@ -1,14 +1,23 @@
    <md-toolbar class="md-toolbar-tools md-primary navbarFixedPosition" layout="row" layout-align="space-between center">
-         <h2  style="font-family: sans-serif;">
+         <h2  style="font-family: sans-serif;" ng-show="{{navtoolbar.isCompany}}">
           Salesman's App 
         </h2>
-        
+        <h2 ng-hide="{{navtoolbar.isCompany}}">{{navtoolbar.isCompany}}</h2>
         <div layout="row" layout-align="end center">  
         <md-button  ng-click="navtoolbar.logout()">logout</md-button>
         </div>
   
     </md-toolbar>
-    
+       <!--<md-toolbar class="md-toolbar-tools md-primary navbarFixedPosition" layout="row" layout-align="space-between center">
+        <md-button  ng-click="navtoolbar.logout()">logout</md-button>
+         <h2  style="font-family: sans-serif;"  >
+          Salesman's App 
+        </h2>
+        <h2 ng-show="{{navtoolbar.isCompany}}">{{navtoolbar.isCompany}}</h2>
+        <div layout="row" layout-align="end center">  
+        </div>
+  
+    </md-toolbar>-->
        <!--<div class="md-toolbar-tools md-primary" layout="row" layout-align="space-between center">
          <h2>
           Salesman's App 

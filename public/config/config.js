@@ -40,6 +40,7 @@ angular.module("myApp")
             "main": {
                 templateUrl: "../components/home/home.html",
                 controller: "HomeController",
+                controllerAs: "home"
             }
         }
     })
@@ -64,6 +65,18 @@ angular.module("myApp")
                 templateUrl: "../components/dashboard/dashboard.html",
                 controller: "DashboardController",
                 controllerAs: "dashboard"
+            }
+        }
+    })
+        .state("product", {
+        url: "/addproduct",
+        loginCompulsory: true,
+        views: {
+            "nav": navtoolbar,
+            "main": {
+                templateUrl: "../components/product/product.html",
+                controller: "ProductController",
+                controllerAs: "product"
             }
         }
     })
@@ -97,6 +110,7 @@ angular.module("myApp")
             var firebaseToken = localStorage.getItem("token");
             if (firebaseToken) {
                 config.url = config.url + "?token=" + firebaseToken;
+                console.log(config.url);
             }
             return config;
         }

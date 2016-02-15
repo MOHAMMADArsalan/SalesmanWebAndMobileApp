@@ -6,19 +6,19 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "express/express.d.ts": {
-      "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
+      "commit": "bcd5761826eb567876c197ccc6a87c4d05731054"
     },
     "node/node.d.ts": {
-      "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
+      "commit": "bcd5761826eb567876c197ccc6a87c4d05731054"
     },
     "serve-static/serve-static.d.ts": {
-      "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
+      "commit": "bcd5761826eb567876c197ccc6a87c4d05731054"
     },
     "body-parser/body-parser.d.ts": {
       "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
     },
     "mime/mime.d.ts": {
-      "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
+      "commit": "bcd5761826eb567876c197ccc6a87c4d05731054"
     },
     "mongoose/mongoose.d.ts": {
       "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
@@ -34,6 +34,9 @@
     },
     "firebase/firebase.d.ts": {
       "commit": "81b951f1ac437d1eb5ff5171a0bfa6c467634b13"
+    },
+    "cors/cors.d.ts": {
+      "commit": "bcd5761826eb567876c197ccc6a87c4d05731054"
     }
   }
 }
