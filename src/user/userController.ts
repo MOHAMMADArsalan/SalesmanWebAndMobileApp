@@ -1,6 +1,6 @@
 
 import express = require("express");
-import {AdminModel, companyModel}  from "./usermodel";
+import {AdminModel, companyModel ,productModel}  from "./usermodel";
 let Firebase = require("firebase");
 import bcrypt = require("bcrypt-nodejs");
 
@@ -43,7 +43,6 @@ export function userSignup(req, res) {
         }
     });
 }
-export function getUser(req, res) { }
 
 // export function addCompany(req,res) {
 //     let company = new companyModel(req.body);
@@ -92,7 +91,10 @@ export function addSalesman(req, res) {
             //user save
             req.body.firebaseToken = userData.uid;
             req.body.companyId = req.query.token;
+          
             let user = new AdminModel(req.body);
+            console.log(req.body)
+            user.companyName = req.body.companyName;
             user.save(function(err, success) {
                 if (err) {
                     res.send(err);
@@ -119,6 +121,9 @@ export function addSalesman(req, res) {
      }
    });
 }
+
+
+
 // export function getAdmin(req, res) {
 //     AdminModel.find({ firebaseToken: req.query.token }, function(err, data) {
 //         if (err) {

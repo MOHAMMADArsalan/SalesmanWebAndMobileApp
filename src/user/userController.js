@@ -43,8 +43,6 @@ function userSignup(req, res) {
     });
 }
 exports.userSignup = userSignup;
-function getUser(req, res) { }
-exports.getUser = getUser;
 // export function addCompany(req,res) {
 //     let company = new companyModel(req.body);
 //     company.save(function(err ,success){
@@ -93,6 +91,8 @@ function addSalesman(req, res) {
             req.body.firebaseToken = userData.uid;
             req.body.companyId = req.query.token;
             var user = new usermodel_1.AdminModel(req.body);
+            console.log(req.body);
+            user.companyName = req.body.companyName;
             user.save(function (err, success) {
                 if (err) {
                     res.send(err);

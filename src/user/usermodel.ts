@@ -15,16 +15,42 @@ let AdminSchema = new mongoose.Schema({
     companyId       : String,
     adminId         : String,
     role_admin      : {type : Boolean , default : true},
-    createdOn       : { type  : Date, default: Date.now()}
+    createdOn       : { type  : Date, default: Date.now()},
+    companyName     :  String 
  });
+ 
+//Company Schema
 
 let companySchema = new mongoose.Schema({
    companyName     :  { type : String , unique : true , required : true },
    address         :  { type : String , unique : true , required : true },
    usersIds        :  { type  : [] },
    adminId         :  String,
-   createdOn       :  { type  : Date, default: Date.now()}
+   createdOn       :  { type  : Date, default: Date.now()},
+   productId       :  { type  : [] },
+   orders          :  { type  : [] }
 });
+
+//Product Schema
+
+let productSchema = new mongoose.Schema({
+    name           :  { type : String ,required : true },
+    adminId        :  {type: String, required: true},
+    companyId      :  {type: String, required: true},
+    price          :  {type: Number, required: true},
+    type           :  String,
+    createdOn      : {type: Date, default: Date.now()} 
+});
+let orderSchema = new mongoose.Schema({
+    customerName   : { type : String ,required : true },
+    product        : { type: String , required : true },
+    quantity       : { type: Number , required : true },
+    price          : { type: Number , required : true },
+    totalprice     : { type: Number , required : true },
+    salemanId      : { type: String , required : true },
+    companyId      : { type: String , required : true }
+})
+//Bcrypt password 
 let noop = function(){};
  AdminSchema.pre("save", function(done){
      let user = this;
@@ -46,4 +72,6 @@ let noop = function(){};
 
 let AdminModel = mongoose.model("saleman2" , AdminSchema);
 let companyModel  = mongoose.model("companyData" , companySchema);
-export {AdminModel , companyModel}
+let productModel  = mongoose.model("productData" , productSchema);
+let OrderModel  = mongoose.model("orderData" , orderSchema);
+export {AdminModel , companyModel , productModel,OrderModel}
