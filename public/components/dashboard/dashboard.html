@@ -4,6 +4,7 @@
 
         <md-button ui-sref="addsaleman" class="md-raised md-primary">Add sale man</md-button>
         <md-button ui-sref="product" class="md-raised md-primary">Add product</md-button>
+        <md-button ui-sref="deliveryrecord" class="md-raised md-primary">deliveryrecord</md-button>
     </div>
     <div layout="row" layout-align="start center">
         <div flex="70" layout="row" >
@@ -33,14 +34,14 @@
         </div>
         <div layout="column" flex="50">
             <md-list layout-padding>
-                <md-list-item class="md-3-line md-whiteframe-20dp" layout-padding ng-repeat="order in dashboard.OrderArray">
+                <md-list-item class="md-3-line md-whiteframe-20dp"  layout-padding ng-repeat="order in dashboard.OrderArray">
                     <div class="md-list-item-text" layout="column">
                         <h3>Customer Name: {{order.customerName }}</h3>
                         <h4>Product : {{order.product}}</h4>
                         <p>total price: {{order.totalprice}}</p>
                     </div>
+                    <md-button ng-click="dashboard.deliveredOrder(order)">delivery</md-button>
                 </md-list-item>
-                <md-divider></md-divider>
             </md-list>
         </div>
     </div>

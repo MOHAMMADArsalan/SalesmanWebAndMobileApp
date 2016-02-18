@@ -101,6 +101,18 @@ angular.module("myApp")
                 }
             }
 
+        })
+         .state("deliveryrecord", {
+            url: "/deliveryrecord",
+           loginCompulsory : true,
+            views: {
+                "main": {
+                    templateUrl : "../components/deliveryrecord/deliveryrecord.html",
+                    controller  : "DeliveryRecordController",
+                    controllerAs: "deliveryrecord"
+                }
+            }
+
         });
         
         $urlRouterProvider.otherwise("/");
@@ -132,7 +144,6 @@ angular.module("myApp")
                 let firebaseToken = localStorage.getItem("token");
                 if (firebaseToken) {
                     config.url = config.url + "?token=" + firebaseToken;
-                    console.log(config.url);
                 }
                 return config;
             }

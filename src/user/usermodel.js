@@ -36,14 +36,25 @@ var productSchema = new mongoose.Schema({
     type: String,
     createdOn: { type: Date, default: Date.now() }
 });
+//Order Schema
 var orderSchema = new mongoose.Schema({
+    location: { lat: Number, long: Number },
     customerName: { type: String, required: true },
     product: { type: String, required: true },
     quantity: { type: Number, required: true },
     price: { type: Number, required: true },
     totalprice: { type: Number, required: true },
     salemanId: { type: String, required: true },
-    companyId: { type: String, required: true }
+    companyId: { type: String, required: true },
+    productId: Number //Custom product id which is timestamp
+});
+var DeliverySchema = new mongoose.Schema({
+    customerName: { type: String, required: true },
+    product: { type: String, required: true },
+    totalprice: { type: Number, required: true },
+    deliveryDate: { type: Date, default: Date.now() },
+    companyId: { type: String, required: true },
+    productId: Number
 });
 //Bcrypt password 
 var noop = function () { };
@@ -73,3 +84,5 @@ var productModel = mongoose.model("productData", productSchema);
 exports.productModel = productModel;
 var OrderModel = mongoose.model("orderData", orderSchema);
 exports.OrderModel = OrderModel;
+var DeliveryModel = mongoose.model("deliveryData", DeliverySchema);
+exports.DeliveryModel = DeliveryModel;

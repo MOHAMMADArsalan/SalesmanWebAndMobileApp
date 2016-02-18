@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'ionMdInput'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'ionMdInput','ngCordova'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$rootScope, $state) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -17,6 +17,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
         }
+    });
+    //if user is login it will redirect to dashboard 
+     $rootScope.$on("$stateChangeStart", function(event, toState){
+      var firebaseLocalToken = localStorage.getItem("token");
+      if (toState.loginCompulsory && firebaseLocalToken != null) {
+        event.preventDefault();
+        $state.go("app.dashboard");
+      }
     });
 })
 
@@ -36,31 +44,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
         templateUrl: 'templates/menu.html',
         controller: 'AppCtrl'
     })
-
-    .state('app.activity', {
-        url: '/activity',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/activity.html',
-                controller: 'ActivityCtrl'
-            },
-            'fabContent': {
-                template: '<button id="fab-activity" class="button button-fab button-fab-top-right expanded button-energized-900 flap"><i class="icon ion-paper-airplane"></i></button>',
-                controller: function ($timeout) {
-                    $timeout(function () {
-                        document.getElementById('fab-activity').classList.toggle('on');
-                    }, 200);
-                }
-            }
-        }
+    
+        $stateProvider.state('login', {
+        url: '/login',
+        loginCompulsory : true,
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
+       
     })
+
+    
 
     .state('app.order', {
         url: '/order',
         views: {
             'menuContent': {
                 templateUrl: 'templates/order.html',
-                controller: 'OrderCtrl'
+                controller: 'OrderCtrl',
             },
             
         }
@@ -71,29 +71,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
         views: {
             'menuContent': {
                 templateUrl: 'templates/dashboard.html',
-                controller: 'DashboardCtrl'
+                controller: 'DashboardCtrl',
             },
            
         }
     })
-
-    .state('app.login', {
-        url: '/login',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/login.html',
-                controller: 'LoginCtrl'
-            },
-          
-        }
-    })
-
-    .state('app.profile', {
+  .state('app.profile', {
         url: '/profile',
         views: {
             'menuContent': {
                 templateUrl: 'templates/profile.html',
-                controller: 'ProfileCtrl'
+                controller: 'ProfileCtrl',
+                
             },
             
         }
@@ -101,5 +90,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
     ;
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/login');
-});
+    $urlRouterProvider.otherwise('/login');
+})
+    

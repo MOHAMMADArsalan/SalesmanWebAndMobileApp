@@ -11,7 +11,7 @@ let AdminSchema = new mongoose.Schema({
     email           : {type : String , required : true, unique : true},
     password        : {type : String , required : true},
     firebaseToken   : String,
-    usersIds        :  { type  : [] },
+    usersIds        : { type  : [] },
     companyId       : String,
     adminId         : String,
     role_admin      : {type : Boolean , default : true},
@@ -41,14 +41,27 @@ let productSchema = new mongoose.Schema({
     type           :  String,
     createdOn      : {type: Date, default: Date.now()} 
 });
+//Order Schema
+
 let orderSchema = new mongoose.Schema({
-    customerName   : { type : String ,required : true },
+    location       : { lat:  Number , long : Number},
+    customerName   : { type: String , required : true },
     product        : { type: String , required : true },
     quantity       : { type: Number , required : true },
     price          : { type: Number , required : true },
     totalprice     : { type: Number , required : true },
     salemanId      : { type: String , required : true },
-    companyId      : { type: String , required : true }
+    companyId      : { type: String , required : true },
+    productId      : Number             //Custom product id which is timestamp
+});
+
+let DeliverySchema = new mongoose.Schema({
+     customerName   : { type: String ,required : true },
+     product        : { type: String , required : true },
+     totalprice     : { type: Number , required : true },
+     deliveryDate   : { type: Date,    default: Date.now()},
+     companyId      : { type: String , required : true },
+     productId      : Number
 })
 //Bcrypt password 
 let noop = function(){};
@@ -74,4 +87,5 @@ let AdminModel = mongoose.model("saleman2" , AdminSchema);
 let companyModel  = mongoose.model("companyData" , companySchema);
 let productModel  = mongoose.model("productData" , productSchema);
 let OrderModel  = mongoose.model("orderData" , orderSchema);
-export {AdminModel , companyModel , productModel,OrderModel}
+let DeliveryModel  = mongoose.model("deliveryData" , DeliverySchema);
+export {AdminModel , companyModel , productModel, OrderModel, DeliveryModel}

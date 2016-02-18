@@ -91,6 +91,17 @@ angular.module("myApp")
                 controllerAs: "saleman"
             }
         }
+    })
+        .state("deliveryrecord", {
+        url: "/deliveryrecord",
+        loginCompulsory: true,
+        views: {
+            "main": {
+                templateUrl: "../components/deliveryrecord/deliveryrecord.html",
+                controller: "DeliveryRecordController",
+                controllerAs: "deliveryrecord"
+            }
+        }
     });
     $urlRouterProvider.otherwise("/");
     $httpProvider.interceptors.push("httpInterceptor");
@@ -110,7 +121,6 @@ angular.module("myApp")
             var firebaseToken = localStorage.getItem("token");
             if (firebaseToken) {
                 config.url = config.url + "?token=" + firebaseToken;
-                console.log(config.url);
             }
             return config;
         }

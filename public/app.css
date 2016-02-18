@@ -28,30 +28,6 @@ md-input-container:not(.md-input-invalid).md-input-focused .md-input {
 ::-webkit-scrollbar {
     width: 4px;
 }
-/*.my-container {
-    position: relative;
-    overflow: hidden;
-   
-}
-.my-container p{
-    text-align: center;
-     position: relative;
-    z-index: 2;
-    font-size:250%;
-} 
-.my-container img {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: auto;
-    opacity: 0.6;
-}*/
-/*.BackgroundImage {
-    background-image: url("../../images/salemans.jpg");
-      height: 451px;
-      width: 100%;
-}*/
 ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
@@ -115,6 +91,7 @@ md-input-container:not(.md-input-invalid).md-input-focused .md-input {
      position: fixed;
      top: 0px;
  }
+
  .container {
      margin-top: 60px;
  }

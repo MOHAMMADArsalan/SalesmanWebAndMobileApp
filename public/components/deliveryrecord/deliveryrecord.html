@@ -1,0 +1,24 @@
+
+
+    <h2 layout="row" class="LightGreenColor " layout-align="center center">Delivered Record</h2>
+    <div layout="column">
+    <div layout="row" layout-align="space-between center" >
+      
+        <div  class="LightGreenColor"  flex="20" flex-offset="5">Customer Name</div>
+        <div  class="LightGreenColor"  flex="30">Delivery Date</div>
+        <div  class="LightGreenColor"  flex="20">Product</div>
+        <div  class="LightGreenColor"  flex="10">Total Price</div>
+        <div  class="LightGreenColor"  flex="10">Delivered</div>
+     
+    </div>
+    <md-divider></md-divider>
+    <div layout="row"  layout-align="space-between center" ng-repeat="record in deliveryrecord.deliverRecord">
+      
+        <div  flex="20" flex-offset="5">{{record.customerName}}</div>
+        <div  flex="30">{{record.deliveryDate}}</div>
+        <div  flex="20">{{record.product}}</div>
+        <div  flex="10">{{record.totalprice}}</div>
+        <div  flex="10"><span layout-margin><ng-md-icon icon="done" style="fill: black" size="35"></ng-md-icon><ng-md-icon icon="settings_backup_restore" style="fill: black" size="35"></ng-md-icon></span></div>
+    </div>
+    </div>
+ 

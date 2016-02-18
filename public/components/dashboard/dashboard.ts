@@ -8,38 +8,31 @@ angular
       
       function dashboardController(commonService,$http,$firebaseArray,$timeout) {
           let _self = this;
-        var ref = new Firebase("https://salesmanhybirdapp.firebaseio.com/");
-        _self.OrderArray = commonService.Order(ref)
+          _self.companyName = ""
+          commonService.getCompany().then(function(response) {
+              _self.companyName = response.data[0].companyName;
+              var ref = new Firebase("https://salesmanhybirdapp.firebaseio.com/" +  _self.companyName + "/order");
+              _self.OrderArray = commonService.Order(ref);
+          }, function(err) {
+              //  console.log(err);
+          });
           var token  = localStorage.getItem("token");
-        //    $timeout(function(){
-        //         $http.get("/router/getorder?token="+token).then(function(response){
-        //         console.log(response)
-                
-        //     }),function(err){
-        //         console.log(err);
-        //     }
-        //    },1000*60)
-        //  _self.data = function(){
-        //           $http.get("/route/getorder").then(function(response){
-        //         console.log(response)
-                
-        //     }),function(err){
-        //         console.log(err);
-        //     }
-        //  }
-        //  commonService.getCompany().then(function(response){
-        //      // console.log(response.data[0].companyName);
-        //     },function(err){
-        //     //  console.log(err);
-        //   })
-      
-      
-              commonService.getOrder().then(function(response){
-               console.log(response);
-              //_self.salemanData = response.data;
+              
+      _self.deliveredOrder = function(order){
+           commonService.deliveryOrder(order).then(function(response){
+              _self.OrderArray.$remove(order)
+              
           },function(err){
             //  console.log(err);
           })
+       }
+            
+        //   commonService.getOrder().then(function(response){
+        //      console.log(response);
+        //       _self.salemanData = response.data;
+        //   },function(err){
+        //     //  console.log(err);
+        //   })
               commonService.getsaleman().then(function(response){
               _self.salemanData = response.data;
           },function(err){
@@ -47,7 +40,6 @@ angular
           })
           
               commonService.getproduct().then(function(response){
-              console.log(response.data);
               _self.product = response.data;
               //$rootScope.comapanyName = response.data[0].companyName
           },function(err){

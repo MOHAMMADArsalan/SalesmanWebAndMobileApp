@@ -52,6 +52,24 @@ angular
         };
         return deffered.promise;
     };
+    _self.deliveryOrder = function (order) {
+        var deffered = $q.defer();
+        $http.post("/router/deliveryOrder", order).then(function (response) {
+            deffered.resolve(response);
+        }), function (err) {
+            deffered.reject(err);
+        };
+        return deffered.promise;
+    };
+    _self.getDeliveryOrder = function (companyid) {
+        var deffered = $q.defer();
+        $http.get("/router/deliveryOrder/" + companyid).then(function (response) {
+            deffered.resolve(response);
+        }), function (err) {
+            deffered.reject(err);
+        };
+        return deffered.promise;
+    };
     _self.showMsg = function (msg) {
         $mdToast.show($mdToast
             .simple()

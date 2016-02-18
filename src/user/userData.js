@@ -19,7 +19,6 @@ router.get("/getcompany", function (req, res) {
 });
 //Add product
 router.post("/addproduct", function (req, res) {
-    console.log(req.query.token);
     console.log(req.body);
     var product = new usermodel_1.productModel(req.body);
     // product.adminId = req.query.token;
@@ -29,8 +28,7 @@ router.post("/addproduct", function (req, res) {
             return;
         }
         ;
-        console.log(success, "kjhskhjkljs");
-        usermodel_1.companyModel.update({ adminId: req.query.token }, { $push: { productId: req.query.token } }, function (error, data) {
+        usermodel_1.companyModel.update({ adminId: req.body.adminId }, { $push: { productId: req.body.companyId } }, function (error, data) {
             if (err) {
                 res.send({ message: false, Error: "Error to update company" });
             }
@@ -40,19 +38,17 @@ router.post("/addproduct", function (req, res) {
         });
     });
 });
-//Add product
+//Take Order
 router.post("/takeorder", function (req, res) {
-    console.log(req.query.token);
-    console.log(req.body);
     var order = new usermodel_1.OrderModel(req.body);
-    // req.body.saleman = req.query.token;
+    console.log(req.body);
     order.save(function (err, success) {
         if (err) {
             res.send({ message: false, Error: "Error to add order" });
             return;
         }
         ;
-        usermodel_1.companyModel.update({ adminId: req.query.token }, { $push: { orders: req.query.token } }, function (error, data) {
+        usermodel_1.companyModel.update({ adminId: req.body.companyId }, { $push: { orders: req.query.token } }, function (error, data) {
             if (err) {
                 res.send({ message: false, Error: "Error to update company" });
             }
@@ -115,35 +111,42 @@ router.get("/token", function (req, res) {
         res.send({ message: true, data: data });
     });
 });
+//deleveryOrder request
+router.post("/deliveryOrder", function (req, res) {
+    console.log(req.body);
+    var delivery = new usermodel_1.DeliveryModel(req.body);
+    delivery.save(function (err, success) {
+        if (err) {
+            res.send({ message: false, Error: err });
+        }
+        else {
+            usermodel_1.OrderModel.findOneAndRemove({ companyId: req.body.companyId, productId: req.body.productId }, function (err, data) {
+                if (err) {
+                    res.send({ message: false, Error: err });
+                }
+                else {
+                    usermodel_1.OrderModel.findOneAndRemove({ companyId: req.body.companyId, productId: req.body.productId });
+                    res.send({ message: true, success: "order delivered" });
+                }
+            });
+        }
+    });
+});
+//Get deleveryOrder request
+router.get("/deliveryOrder/:companyId", function (req, res) {
+    usermodel_1.DeliveryModel.find({ companyId: req.params.companyId }, function (err, data) {
+        if (err) {
+            res.send({ message: false, Error: err });
+        }
+        else {
+            if (!data) {
+                res.send({ message: false, data: "Data nod found" });
+            }
+            else {
+                console.log(data);
+                res.send({ message: true, success: data });
+            }
+        }
+    });
+});
 module.exports = router;
-// export function getAdmin(req, res) {
-//     AdminModel.find({ firebaseToken: req.query.token }, function(err, data) {
-//         if (err) {
-//             console.log("Error", err);
-//             res.send({ message: false, Error: err });
-//             return;
-//         }
-//         res.send({ message: true, data: data });
-//     });
-// }
-// export function getAdmin(req, res) {
-//     AdminModel.find({ firebaseToken: req.query.token }, function(err, data) {
-//         if (err) {
-//             console.log("Error", err);
-//             res.send({ message: false, Error: err });
-//             return;
-//         }
-//         res.send({ message: true, data: data });
-//     });
-// }
-// export function getCompany(req, res) {
-//    companyModel.find({ firebaseToken: req.query.token } ,function(err ,data){
-//         if(err){
-//             res.send("Error to load Company")
-//         } else if(!data){ 
-//             res.send("Company not found")
-//         }else{
-//             res.send(data);
-//         }
-//     })
-// } 

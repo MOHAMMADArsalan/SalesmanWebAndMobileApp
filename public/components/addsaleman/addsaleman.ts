@@ -20,6 +20,7 @@ angular
                 _self.loader = true;
                 $http.post("/api/addSalesman", this.user).then(function(response) {
                 commonService.showMsg("saleman add successfully")
+               
                _self.loader = false;
                        $state.go("dashboard");
 
