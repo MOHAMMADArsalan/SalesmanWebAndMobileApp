@@ -1,8 +1,8 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 angular
     .module("app.dashboard", ['firebase'])
-    .controller("DashboardController", ['commonService', "$firebaseArray", '$http', '$timeout', dashboardController]);
-function dashboardController(commonService, $http, $firebaseArray, $timeout) {
+    .controller("DashboardController", ['commonService', "$firebaseArray", '$http', '$timeout', "$state", dashboardController]);
+function dashboardController(commonService, $http, $firebaseArray, $timeout, $state) {
     var _self = this;
     _self.companyName = "";
     commonService.getCompany().then(function (response) {
@@ -12,7 +12,11 @@ function dashboardController(commonService, $http, $firebaseArray, $timeout) {
     }, function (err) {
         //  console.log(err);
     });
-    var token = localStorage.getItem("token");
+    //   var token  = localStorage.getItem("token");
+    //   //Geo location Function
+    //       _self.location = function (lat , long) {
+    //           $state.go("location", {lat1 : lat , long1:  long });
+    //       }
     _self.deliveredOrder = function (order) {
         commonService.deliveryOrder(order).then(function (response) {
             _self.OrderArray.$remove(order);

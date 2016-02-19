@@ -92,6 +92,17 @@ angular.module("myApp")
             }
         }
     })
+        .state("location", {
+        url: "/location/:lat/:lng",
+        loginCompulsory: true,
+        views: {
+            "main": {
+                templateUrl: "../components/location/location.html",
+                controller: "LocationController",
+                controllerAs: "location"
+            }
+        }
+    })
         .state("deliveryrecord", {
         url: "/deliveryrecord",
         loginCompulsory: true,

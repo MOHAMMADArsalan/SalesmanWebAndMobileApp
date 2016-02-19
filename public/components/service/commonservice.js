@@ -7,6 +7,9 @@ angular
         _self.OrderArray = $firebaseArray(ref);
         return _self.OrderArray;
     };
+    _self.GetLocation = function ($scope, lat, long) {
+        console.log(lat, long);
+    };
     _self.getAdmin = function () {
         var deferred = $q.defer();
         $http.get("/router/token").then(function (response) {

@@ -39,6 +39,7 @@
                         <h3>Customer Name: {{order.customerName }}</h3>
                         <h4>Product : {{order.product}}</h4>
                         <p>total price: {{order.totalprice}}</p>
+                        <a ui-sref="location({lat: order.location.lat ,lng: order.location.long})">view location</a>
                     </div>
                     <md-button ng-click="dashboard.deliveredOrder(order)">delivery</md-button>
                 </md-list-item>
@@ -46,3 +47,4 @@
         </div>
     </div>
 </div>
+  <md-button ui-sref="location">location</md-button>

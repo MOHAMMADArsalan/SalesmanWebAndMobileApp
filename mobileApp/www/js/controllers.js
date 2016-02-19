@@ -131,7 +131,8 @@ angular.module('starter.controllers', ['firebase'])
                                 $scope.loader = false;
                             }
                             else {
-                                localStorage.setItem("token", user.firebaseToken);
+                                console.log
+                                localStorage.setItem("token", data.data.firebaseToken);
                                 $state.go("app.dashboard");
                                 $scope.loader = false;
                             }
