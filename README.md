@@ -1,4 +1,4 @@
-# SalesmanWebAndMobileApp
+# Salesman Web And MobileApp
 
 ### Salesman's  App created using **MEAN** and **AngularFire** for *Realtime*
 
