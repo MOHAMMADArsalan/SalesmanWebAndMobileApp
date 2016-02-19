@@ -2,10 +2,8 @@ var usermodel_1 = require("./usermodel");
 var Firebase = require("firebase");
 var bcrypt = require("bcrypt-nodejs");
 function userSignin(req, res) {
-    //  console.log(req.body)
     usermodel_1.AdminModel.findOne({ email: req.body.username }, function (err, success) {
         if (success) {
-            console.log(success);
             bcrypt.compare(req.body.password, success.password, function (err, isMatch) {
                 done(err, isMatch);
             });
@@ -43,19 +41,7 @@ function userSignup(req, res) {
     });
 }
 exports.userSignup = userSignup;
-// export function addCompany(req,res) {
-//     let company = new companyModel(req.body);
-//     company.save(function(err ,success){
-//         if(err){
-//             res.send({message : false , Error : err});
-//         }else{
-//             res.send({message : true , data : success});
-//         }
-//     })
-// }
 function addCompany(req, res) {
-    console.log(req.query.token);
-    console.log(req.body);
     var company = new usermodel_1.companyModel(req.body);
     company.adminId = req.query.token;
     company.save(function (err, success) {
@@ -91,7 +77,6 @@ function addSalesman(req, res) {
             req.body.firebaseToken = userData.uid;
             req.body.companyId = req.query.token;
             var user = new usermodel_1.AdminModel(req.body);
-            console.log(req.body);
             user.companyName = req.body.companyName;
             user.save(function (err, success) {
                 if (err) {
