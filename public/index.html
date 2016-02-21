@@ -45,13 +45,18 @@
     <script src="components/product/product.js"></script>
     <script src="components/deliveryrecord/deliveryrecord.js"></script>
     <script src="components/location/location.js"></script>
+    <script src="components/viewproduct/viewproduct.js"></script>
+    <script src="components/viewsaleman/viewsaleman.js"></script>
  
 </head>
 
-<body ng-controller="myCtrl as app">
-  
+<body  layout="column">
+    <md-content>
+  <div ng-controller="myCtrl as app">
     <div ui-view="nav"></div>
     <div ui-view="main"></div>
+  </div>
+    </md-content>
 </body>
 
 </html>

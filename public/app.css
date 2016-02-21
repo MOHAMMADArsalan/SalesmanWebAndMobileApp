@@ -1,6 +1,9 @@
 .LightGreenColor{
     color:#18AA8D ! important;
 }
+.LightGreenBackgroundColor{
+    background:#18AA8D ! important;
+}
 .color {
     background: black;
 }
@@ -11,6 +14,7 @@ md-input-container:not(.md-input-invalid).md-input-focused .md-input {
     overflow-x: hidden;
     overflow-y: auto;
 }
+
 .formBorderLigthGreen{
     border: 5px solid #18AA8D;
 }
@@ -96,3 +100,18 @@ md-input-container:not(.md-input-invalid).md-input-focused .md-input {
      margin-top: 60px;
  }
 
+.RedColorForErrorMessage {
+   color: red !important; 
+}
+.margin10px {
+    margin-right: 10px;
+    margin-left: 10px 
+}
+.productImage {
+    background-image: url("images/product.jpg");
+    background-repeat: no-repeat;
+}
+.SalemanImage {
+    background-image: url("images/images.png");
+    background-repeat: no-repeat;
+}

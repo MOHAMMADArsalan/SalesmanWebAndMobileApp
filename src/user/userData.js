@@ -86,6 +86,18 @@ router.get("/getsaleman", function (req, res) {
         }
     });
 });
+//Get only One Saleman detail
+router.get("/getOnesaleman/:firebaseToken", function (req, res) {
+    console.log(req.params.firebaseToken);
+    usermodel_1.AdminModel.findOne({ firebaseToken: req.params.firebaseToken, role_admin: false }, function (err, data) {
+        if (err) {
+            res.send("Error to load Company");
+        }
+        else {
+            res.send(data);
+        }
+    });
+});
 //Get product
 router.get("/getproduct", function (req, res) {
     usermodel_1.productModel.find({ adminId: req.query.token }, function (err, data) {

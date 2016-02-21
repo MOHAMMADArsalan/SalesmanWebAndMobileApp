@@ -6,14 +6,14 @@ angular
     .service("commonService", function($http, $firebaseArray,$q, $mdToast) {
           
            let _self = this;
+
+           //Firebase Array
            _self.Order = function(ref){
            _self.OrderArray = $firebaseArray(ref);
           return _self.OrderArray;
       }
-      _self.GetLocation = function($scope,lat , long) {
-          console.log(lat, long)
-       }
-        _self.getAdmin = function() {
+        //Get admin detail
+       _self.getAdmin = function() {
             var deferred = $q.defer();
             $http.get("/router/token").then(function(response) {
                 deferred.resolve(response)
@@ -22,6 +22,7 @@ angular
             };
             return deferred.promise;
         }
+       //Get All Saleman Data 
        _self.getsaleman = function(){
            var deffered = $q.defer();
            $http.get("/router/getsaleman").then(function(response){
@@ -32,6 +33,18 @@ angular
            
            return deffered.promise;
        }
+          //Get One Saleman Data 
+       _self.getsalemandetail = function(firebaseToken){
+           var deffered = $q.defer();
+           $http.get("/router/getOnesaleman/"+firebaseToken).then(function(response){
+             deffered.resolve(response);  
+           }),function(err){
+               deffered.reject(err);
+           }
+           
+           return deffered.promise;
+       }
+                 //Get all Product        
             _self.getproduct = function(){
            var deffered = $q.defer();
            $http.get("/router/getproduct").then(function(response){
@@ -42,6 +55,7 @@ angular
            
            return deffered.promise;
        }
+       //Get current admin company
        _self.getCompany = function(){
            var deffered = $q.defer();
            $http.get("/router/getcompany").then(function(response){
@@ -52,6 +66,7 @@ angular
            
            return deffered.promise;
        }
+       //Get all order from mongodb
        _self.getOrder = function(){
            var deffered = $q.defer();
            $http.get("/router/getorder").then(function(response){
@@ -62,6 +77,7 @@ angular
            
            return deffered.promise;
        }
+       //Save devilry data to mongodb and remove order schema 
        _self.deliveryOrder = function(order){
            var deffered = $q.defer();
            $http.post("/router/deliveryOrder",order).then(function(response){
@@ -72,6 +88,7 @@ angular
            
            return deffered.promise;
        }
+        //get all delivery data by company
        _self.getDeliveryOrder = function(companyid){
            var deffered = $q.defer();
            $http.get("/router/deliveryOrder/"+companyid).then(function(response){
@@ -82,12 +99,13 @@ angular
            
            return deffered.promise;
        }
+       //md toast message
         _self.showMsg = function(msg) {
             $mdToast.show(
                 $mdToast
                     .simple()
                     .textContent(msg)
-                    .position("top right")
+                    .position("right top")
                     .hideDelay(2000)
             )
 

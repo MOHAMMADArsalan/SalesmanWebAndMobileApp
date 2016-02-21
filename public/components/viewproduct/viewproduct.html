@@ -1,0 +1,13 @@
+   
+
+<div style="margin:5% auto 0 auto;">
+      <h2>All Product</h2>
+</div>
+    <md-grid-list md-cols-md="3" md-cols="1" md-cols-sm="2" md-cols-lg="4" md-cols-gt-sm="2" md-cols-gt-lg="6" class="margin10px" md-gutter="12px"
+md-row-height-gt-md="1:1" md-row-height="4:3" ng-cloak>
+    <md-grid-tile class="productImage md-whiteframe-20dp" ng-repeat="product in viewproduct.product track by $index">
+        <md-grid-tile-footer>
+            <p class="md-title LightGreenColor" layout-padding>Name: {{product.name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; price {{product.price}}</p>
+        </md-grid-tile-footer>
+    </md-grid-tile>
+</md-grid-list>

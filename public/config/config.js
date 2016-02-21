@@ -113,6 +113,29 @@ angular.module("myApp")
                 controllerAs: "deliveryrecord"
             }
         }
+    })
+        .state("viewproduct", {
+        url: "/viewproduct",
+        loginCompulsory: true,
+        views: {
+            "nav": navtoolbar,
+            "main": {
+                templateUrl: "../components/viewproduct/viewproduct.html",
+                controller: "ViewProductController",
+                controllerAs: "viewproduct"
+            }
+        }
+    })
+        .state("viewsaleman", {
+        url: "/viewsaleman",
+        loginCompulsory: true,
+        views: {
+            "main": {
+                templateUrl: "../components/viewsaleman/viewsaleman.html",
+                controller: "ViewSalemnanController",
+                controllerAs: "viewsaleman"
+            }
+        }
     });
     $urlRouterProvider.otherwise("/");
     $httpProvider.interceptors.push("httpInterceptor");

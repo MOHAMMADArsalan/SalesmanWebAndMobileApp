@@ -5,9 +5,12 @@ angular.module("app.home",[])
      var _self = this;
      _self.isCompany = false;
      commonService.getCompany().then(function(response){
-             // console.log(response.data[0].companyName);
-          _self.isCompany = response.data[0].companyName;
-          $state.go("dashboard")
+            if(response.data.length == 0){
+            
+        }else {
+            _self.isCompany = response.data[0].comapanyName;
+            $state.go("dashboard");
+        }
           },function(err){
               console.log(err);
           })

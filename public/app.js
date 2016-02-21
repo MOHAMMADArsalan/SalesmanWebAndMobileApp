@@ -1,5 +1,22 @@
 /// <reference path="../typings/tsd.d.ts" />
-angular.module("myApp", ["ui.router", 'leaflet-directive', "ngMaterial", 'md.data.table', "ngMdIcons", "app.signin", "app.signup", "app.home", "app.company", "app.dashboard", "app.navtoolbar", "app.navloginbar", "app.addsaleman", "app.product", "app.deliveryrecord", 'app.location'])
+angular.module("myApp", ["ui.router",
+    "leaflet-directive",
+    "ngMaterial",
+    "md.data.table",
+    "ngMdIcons",
+    "app.signin",
+    "app.signup",
+    "app.home",
+    "app.company",
+    "app.dashboard",
+    "app.navtoolbar",
+    "app.navloginbar",
+    "app.addsaleman",
+    "app.product",
+    "app.deliveryrecord",
+    "app.location",
+    "app.viewproduct",
+    'app.viewsaleman'])
     .config(function ($mdThemingProvider) {
     $mdThemingProvider.theme("default")
         .primaryPalette("teal")

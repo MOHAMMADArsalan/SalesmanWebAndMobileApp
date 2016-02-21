@@ -16,11 +16,7 @@ angular
           }, function(err) {
               //  console.log(err);
           });
-        //   var token  = localStorage.getItem("token");
-        //   //Geo location Function
-        //       _self.location = function (lat , long) {
-        //           $state.go("location", {lat1 : lat , long1:  long });
-        //       }
+    
       _self.deliveredOrder = function(order){
            commonService.deliveryOrder(order).then(function(response){
               _self.OrderArray.$remove(order)
@@ -30,23 +26,7 @@ angular
           })
        }
             
-        //   commonService.getOrder().then(function(response){
-        //      console.log(response);
-        //       _self.salemanData = response.data;
-        //   },function(err){
-        //     //  console.log(err);
-        //   })
-              commonService.getsaleman().then(function(response){
-              _self.salemanData = response.data;
-          },function(err){
-            //  console.log(err);
-          })
-          
-              commonService.getproduct().then(function(response){
-              _self.product = response.data;
-              //$rootScope.comapanyName = response.data[0].companyName
-          },function(err){
-              //console.log(err);
-          })
-        }
-      
+     
+     
+             
+      }

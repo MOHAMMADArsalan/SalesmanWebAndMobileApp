@@ -1,37 +1,17 @@
 <div layout="column">
     <h1 class="container"></h1>
     <div layout="row" layout-align="center center">
-
+         
         <md-button ui-sref="addsaleman" class="md-raised md-primary">Add sale man</md-button>
         <md-button ui-sref="product" class="md-raised md-primary">Add product</md-button>
         <md-button ui-sref="deliveryrecord" class="md-raised md-primary">deliveryrecord</md-button>
+        <md-button ui-sref="viewproduct" class="md-raised md-primary">viewproduct</md-button>
+         <md-button ui-sref="viewsaleman" class="md-raised md-primary">viewsaleman</md-button>
     </div>
     <div layout="row" layout-align="start center">
-        <div flex="70" layout="row" >
-            <!-- saleman list-->
-            <div layout="column" layout-padding>
-                <md-card style="width:auto; height:auto;" class="md-whiteframe-20dp" ng-repeat="saleman in dashboard.salemanData track by $index">
-                    <md-card-title>
-                        <md-card-title-text layout-padding>
-                            <span class="md-title">Saleman: {{saleman.username}}</span>
-                            <span class="md-title">Email : {{saleman.email}}</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                </md-card>
-            </div>
+        
+         
 
-            <!--product list-->
-            <div layout="column" layout-padding>
-                <md-card style="width:auto; height:auto;" class="md-whiteframe-20dp" ng-repeat="product in dashboard.product track by $index">
-                    <md-card-title>
-                        <md-card-title-text layout-padding>
-                            <span class="md-title">Name: {{product.name}}</span>
-                            <span class="md-title">Type:  {{product.type}}</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                </md-card>
-            </div>
-        </div>
         <div layout="column" flex="50">
             <md-list layout-padding>
                 <md-list-item class="md-3-line md-whiteframe-20dp"  layout-padding ng-repeat="order in dashboard.OrderArray">
@@ -44,7 +24,5 @@
                     <md-button ng-click="dashboard.deliveredOrder(order)">delivery</md-button>
                 </md-list-item>
             </md-list>
-        </div>
     </div>
 </div>
-  <md-button ui-sref="location">location</md-button>

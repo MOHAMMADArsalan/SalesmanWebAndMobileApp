@@ -26,7 +26,7 @@ export function userSignup(req, res) {
         password: req.body.password
     }, function(err, userData) {
         if (err) {
-            res.send("Error to save user: " + err);
+            res.send("Email is already exist");
         } else {
             req.body.firebaseToken = userData.uid;
             let user = new AdminModel(req.body);
