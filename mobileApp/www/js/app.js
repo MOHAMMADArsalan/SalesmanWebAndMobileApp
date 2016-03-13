@@ -18,7 +18,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
             StatusBar.styleDefault();
         }
     });
-    //if user is login it will redirect to dashboard 
+    //if user is login it will redirect to dashboard
      $rootScope.$on("$stateChangeStart", function(event, toState){
       var firebaseLocalToken = localStorage.getItem("token");
       if (toState.loginCompulsory && firebaseLocalToken != null) {
@@ -31,7 +31,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     // Turn off caching for demo simplicity's sake
-    $ionicConfigProvider.views.maxCache(0);
+//    $ionicConfigProvider.views.maxCache(0);
 
     /*
     // Turn off back button text
@@ -44,16 +44,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
         templateUrl: 'templates/menu.html',
         controller: 'AppCtrl'
     })
-    
+
         $stateProvider.state('login', {
         url: '/login',
         loginCompulsory : true,
         templateUrl: 'templates/login.html',
         controller: 'LoginCtrl'
-       
+
     })
 
-    
+
 
     .state('app.order', {
         url: '/order',
@@ -62,7 +62,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
                 templateUrl: 'templates/order.html',
                 controller: 'OrderCtrl',
             },
-            
+
         }
     })
 
@@ -73,7 +73,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
                 templateUrl: 'templates/dashboard.html',
                 controller: 'DashboardCtrl',
             },
-           
+
         }
     })
   .state('app.profile', {
@@ -82,14 +82,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
             'menuContent': {
                 templateUrl: 'templates/profile.html',
                 controller: 'ProfileCtrl',
-                
+
             },
-            
+
         }
     })
     ;
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/login');
+  //  $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise(function($injector, $location){
+     var $state = $injector.get("$state");
+     $state.go('login');
 })
-    
+})

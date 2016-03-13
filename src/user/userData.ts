@@ -10,7 +10,7 @@ router.get("/getcompany", function(req,res){
      companyModel.find({$or:[{ adminId: req.query.token }, {usersIds : req.query.token}]},function(err ,data){
         if(err){
             res.send("Error to load Company")
-        } else if(!data){ 
+        } else if(!data){
             res.send("Company not found")
         }else{
             res.send(data);
@@ -18,19 +18,19 @@ router.get("/getcompany", function(req,res){
     })
 })
 
-//Add product
-router.post("/addproduct",function(req, res) {
+// Add product
+router.post("/addproduct", function(req, res) {
      console.log(req.body)
     let product = new productModel(req.body);
    // product.adminId = req.query.token;
     product.save(function(err, success) {
         if (err) {
-            
+
             res.send({ message: false, Error: "Error to add product" });
             return;
         };
         companyModel.update({ adminId: req.body.adminId }, { $push: { productId: req.body.companyId } }, function(error, data) {
-           
+
             if (err) {
                 res.send({ message: false, Error: "Error to update company" });
             } else {
@@ -64,7 +64,7 @@ router.get("/getorder", function(req,res){
      OrderModel.find({ companyId: req.query.token} ,function(err ,data){
         if(err){
             res.send("Error to load Company")
-        } else if(!data){ 
+        } else if(!data){
             res.send("Order not found")
         }else{
             res.send(data);
@@ -77,7 +77,7 @@ router.get("/getsaleman", function(req,res){
      AdminModel.find({ companyId: req.query.token , role_admin : false} ,function(err ,data){
         if(err){
             res.send("Error to load Company")
-        } else if(!data){ 
+        } else if(!data){
             res.send("saleman not found")
         }else{
             res.send(data);
@@ -102,7 +102,7 @@ router.get("/getproduct", function(req,res){
      productModel.find({ adminId: req.query.token} ,function(err ,data){
         if(err){
             res.send("Error to load Company")
-        } else if(!data){ 
+        } else if(!data){
             res.send("product not found")
         }else{
             res.send(data);
@@ -137,7 +137,7 @@ router.post("/deliveryOrder",function(req, res) {
                 }else{
                   OrderModel.findOneAndRemove({companyId : req.body.companyId ,productId :req.body.productId});
                   res.send({message: true , success: "order delivered"})
-                }                
+                }
             })
         }
     })
@@ -154,7 +154,7 @@ router.get("/deliveryOrder/:companyId",function(req, res) {
                 } else{
                     console.log(data);
                   res.send({message: true , success: data })
-                }                
+                }
         }
     })
 })

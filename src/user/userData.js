@@ -1,8 +1,7 @@
-/// <reference path="../../typings/tsd.d.ts" />
+"use strict";
 var express = require("express");
 var usermodel_1 = require("./usermodel");
 var router = express.Router();
-//Get comapny Detail
 router.get("/getcompany", function (req, res) {
     console.log(req.query.token);
     usermodel_1.companyModel.find({ $or: [{ adminId: req.query.token }, { usersIds: req.query.token }] }, function (err, data) {
@@ -17,11 +16,9 @@ router.get("/getcompany", function (req, res) {
         }
     });
 });
-//Add product
 router.post("/addproduct", function (req, res) {
     console.log(req.body);
     var product = new usermodel_1.productModel(req.body);
-    // product.adminId = req.query.token;
     product.save(function (err, success) {
         if (err) {
             res.send({ message: false, Error: "Error to add product" });
@@ -38,7 +35,6 @@ router.post("/addproduct", function (req, res) {
         });
     });
 });
-//Take Order
 router.post("/takeorder", function (req, res) {
     var order = new usermodel_1.OrderModel(req.body);
     console.log(req.body);
@@ -58,7 +54,6 @@ router.post("/takeorder", function (req, res) {
         });
     });
 });
-//Get Order detail
 router.get("/getorder", function (req, res) {
     usermodel_1.OrderModel.find({ companyId: req.query.token }, function (err, data) {
         if (err) {
@@ -72,7 +67,6 @@ router.get("/getorder", function (req, res) {
         }
     });
 });
-//Get Saleman detail
 router.get("/getsaleman", function (req, res) {
     usermodel_1.AdminModel.find({ companyId: req.query.token, role_admin: false }, function (err, data) {
         if (err) {
@@ -86,7 +80,6 @@ router.get("/getsaleman", function (req, res) {
         }
     });
 });
-//Get only One Saleman detail
 router.get("/getOnesaleman/:firebaseToken", function (req, res) {
     console.log(req.params.firebaseToken);
     usermodel_1.AdminModel.findOne({ firebaseToken: req.params.firebaseToken, role_admin: false }, function (err, data) {
@@ -98,7 +91,6 @@ router.get("/getOnesaleman/:firebaseToken", function (req, res) {
         }
     });
 });
-//Get product
 router.get("/getproduct", function (req, res) {
     usermodel_1.productModel.find({ adminId: req.query.token }, function (err, data) {
         if (err) {
@@ -112,7 +104,6 @@ router.get("/getproduct", function (req, res) {
         }
     });
 });
-//Get Admin
 router.get("/token", function (req, res) {
     usermodel_1.AdminModel.find({ firebaseToken: req.query.token }, function (err, data) {
         if (err) {
@@ -123,7 +114,6 @@ router.get("/token", function (req, res) {
         res.send({ message: true, data: data });
     });
 });
-//deleveryOrder request
 router.post("/deliveryOrder", function (req, res) {
     console.log(req.body);
     var delivery = new usermodel_1.DeliveryModel(req.body);
@@ -144,7 +134,6 @@ router.post("/deliveryOrder", function (req, res) {
         }
     });
 });
-//Get deleveryOrder request
 router.get("/deliveryOrder/:companyId", function (req, res) {
     usermodel_1.DeliveryModel.find({ companyId: req.params.companyId }, function (err, data) {
         if (err) {
